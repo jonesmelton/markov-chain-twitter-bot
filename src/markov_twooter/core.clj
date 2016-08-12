@@ -47,7 +47,27 @@
 
 (def processed-files (apply merge-with clojure.set/union (map process-file files)))
 
+(def prefix-list ["But then" "And now" "Though the" 
+                       "Just why" "And but" "The Moms"
+                       "There was" "The thing" "And it"
+                       "The way" "it also" "can stand"
+                       "more than" "More than" "against the"
+                       "Against the" "to keep" "at the"])
+
+(defn end-at-last-punctuation [text]
+  (let [trimmed-to-last-punct (apply str (re-seq #"[\s\w]+[^.!?,]*[.!?,]" text))
+        trimmed-to-last-word (apply str (re-seq #".*[^a-zA-Z]+" text))
+        result-text (if (empty? trimmed-to-last-punct)
+                      trimmed-to-last-word
+                      trimmed-to-last-punct)
+        cleaned-text (clojure.string/replace result-text #"[,| ]$" ".")]
+    (clojure.string/replace cleaned-text #"\"" "'")))
+
+(defn tweet-text []
+  (let [text (generate-text (-> prefix-list shuffle first) processed-files)]
+    (end-at-last-punctuation text)))
+
 (defn -main
   "Public interface for markov-generator."
   [& args]
-  (println (generate-text "On the" processed-files)))
+  (println (tweet-text)))
