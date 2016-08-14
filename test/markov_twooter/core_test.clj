@@ -1,6 +1,7 @@
 (ns markov-twooter.core-test
   (:require [clojure.test :refer :all]
-            [markov-twooter.core :refer :all]))
+            [markov-twooter.core :refer :all]
+            [markov-twooter.generator :refer :all]))
 
 (deftest test-word-chain
   (testing "it produces a chain of the possible two step transitions between suffixes and prefixes"
