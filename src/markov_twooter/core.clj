@@ -1,8 +1,8 @@
 (ns markov-twooter.core
-  (:require [markov-twooter.generator :as gen :refer [tweet-text]])
+  (:require [markov-twooter.twitter-interface :as twit :refer [status-update]])
   (:gen-class))
 
 (defn -main
   "Public interface for markov-generator."
   [& args]
-  (println (gen/tweet-text)))
+  (twit/status-update))
