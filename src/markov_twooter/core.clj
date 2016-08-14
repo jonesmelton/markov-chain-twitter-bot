@@ -1,7 +1,8 @@
 (ns markov-twooter.core
+  (:require [markov-twooter.generator :as gen :refer [tweet-text]])
   (:gen-class))
 
 (defn -main
-  "I don't do a whole lot ... yet."
+  "Public interface for markov-generator."
   [& args]
-  (println "Hello, World!"))
+  (println (gen/tweet-text)))
