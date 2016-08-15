@@ -6,7 +6,8 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                            [twitter-api "0.7.8"]
                            [environ "1.1.0"]
-                           [clj-http "2.1.0"]]
+                           [clj-http "2.1.0"]
+                           [overtone/at-at "1.2.0"]]
   :main ^:skip-aot markov-twooter.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}}
