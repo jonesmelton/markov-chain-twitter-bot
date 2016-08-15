@@ -15,7 +15,7 @@
     (word-chain word-transitions)))
 
 (defn chain->text [chain]
-  (apply str (interpose " " chain)))
+ (clojure.string/join " " chain) )
 
 (defn walk-chain [prefix chain result]
   (let [suffixes (get chain prefix)]
@@ -54,8 +54,8 @@
                        "Against the" "to keep" "at the"])
 
 (defn end-at-last-punctuation [text]
-  (let [trimmed-to-last-punct (apply str (re-seq #"[\s\w]+[^.!?,]*[.!?,]" text))
-        trimmed-to-last-word (apply str (re-seq #".*[^a-zA-Z]+" text))
+  (let [trimmed-to-last-punct (clojure.string/join  (re-seq #"[\s\w]+[^.!?,]*[.!?,]" text))
+        trimmed-to-last-word (clojure.string/join (re-seq #".*[^a-zA-Z]+" text))
         result-text (if (empty? trimmed-to-last-punct)
                       trimmed-to-last-word
                       trimmed-to-last-punct)
