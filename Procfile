@@ -1,0 +1,1 @@
+worker: lein trampline run
