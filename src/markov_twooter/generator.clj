@@ -1,10 +1,11 @@
-(ns markov-twooter.generator)
+(ns markov-twooter.generator
+  (:require [clojure.set :refer [union]]))
 
 (defn word-chain [word-transitions]
   (reduce (fn [ r t] (merge-with clojure.set/union r
                                  (let [[a b c] t]
-                                   {[a b] (if c 
-                                            #{c} 
+                                   {[a b] (if c
+                                            #{c}
                                             #{})})))
           {}
           word-transitions))
@@ -46,7 +47,7 @@
 
 (def processed-files (apply merge-with clojure.set/union (map process-file files)))
 
-(def prefix-list ["But then" "And now" "Though the" 
+(def prefix-list ["But then" "And now" "Though the"
                        "Just why" "And but" "The Moms"
                        "There was" "The thing" "And it"
                        "The way" "it also" "can stand"

@@ -11,4 +11,5 @@
   :main ^:skip-aot markov-twooter.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}}
-  :plugins [[lein-environ "1.1.0"]])
+  :plugins [[lein-environ "1.1.0"]
+  			 [com.palletops/uberimage "0.4.1"]])
